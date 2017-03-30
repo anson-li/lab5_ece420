@@ -1,0 +1,5 @@
+val m = collection.mutable.Map[String, Int]().withDefaultValue(0)
+for (line <- Source.fromFile("data_input").getLines()) {
+  m(line.split("\t")(1)) += 1 
+}
+var result = m.valuesIterator.reduceLeft(_ max _)
