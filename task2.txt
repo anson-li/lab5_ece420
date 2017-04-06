@@ -1,9 +1,3 @@
 val inputfile = sc.textFile("data_input_2")
 val counts = inputfile.flatMap(line => line.split(" ")).map(word => (word.split("\t")(0), Array(word.split("\t")(1)))).reduceByKey((x,y)=>(x ++ y)).union(inputfile.flatMap(line => line.split(" ")).map(word => (word.split("\t")(1), Array(word.split("\t")(0)))).reduceByKey((x,y)=>(x ++ y))).reduceByKey((x,y)=>(x ++ y).distinct)
 counts.collect().foreach((x) => (println((x._1), x._2.mkString(","))))
-
-``
-
-debug:
-
-counts.take(5).foreach(println)
