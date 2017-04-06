@@ -1,7 +1,6 @@
-val inputfile = sc.textFile("data_input_2")
+val inputfile = sc.textFile("data_input")
 val counts = inputfile.flatMap(line => line.split(" ")).map(word => (word.split("\t")(0), 1)).reduceByKey(_+_)
-val max = counts.takeOrdered(1)(Ordering[Int].reverse.on(_._2))(0)._1
-counts.collect().foreach((x) => (println((x._1, x._2))))
+val result = counts.takeOrdered(1)(Ordering[Int].reverse.on(_._2))(0)._1
+println(result)
 
-``
 // Reference: http://stackoverflow.com/questions/26886275/how-to-find-max-value-in-pair-rdd

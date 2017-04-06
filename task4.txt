@@ -1,3 +1,3 @@
-val inputfile = sc.textFile("data_input_2")
-val counts2 = (inputfile.flatMap(line => line.split(" ")).map(k => (k.split("\t")(0).toInt, k.split("\t")(1).toInt)).map(k => (k._2,k._1)).join(inputfile.flatMap(line => line.split(" ")).map(k => (k.split("\t")(0).toInt, k.split("\t")(1).toInt)).map(k => (k._1,k._2)))).union(inputfile.flatMap(line => line.split(" ")).map(k => (k.split("\t")(0).toInt, k.split("\t")(1).toInt)).map(k => (-1,(k._1,k._2))))
-counts2.collect().foreach((x => println(x)))
+val inputfile = sc.textFile("data_input")
+val result = (inputfile.flatMap(line => line.split(" ")).map(k => (k.split("\t")(0).toInt, k.split("\t")(1).toInt)).map(k => (k._2,k._1)).join(inputfile.flatMap(line => line.split(" ")).map(k => (k.split("\t")(0).toInt, k.split("\t")(1).toInt)).map(k => (k._1,k._2)))).union(inputfile.flatMap(line => line.split(" ")).map(k => (k.split("\t")(0).toInt, k.split("\t")(1).toInt)).map(k => (-1,(k._1,k._2))))
+result.collect().foreach((x => println(x._2)))
